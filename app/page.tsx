@@ -6,6 +6,49 @@ import { useRef, useState } from "react";
 
 type Language = "ar" | "en";
 
+const books = {
+  ar: [
+    {
+      id: 1,
+      title: "من أجل القضية الوطنية",
+      subtitle: "مقالات ومقاربات",
+      description: "مجموعة مقالات نُشرت بأسماء مستعارة في الفترة من 2007م إلى 2008م، تُعبّر عن النضال من أجل الكرامة الوطنية والمشاركة الديمقراطية.",
+      cover: "/cover.png",
+      link: "/book",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: "شجون وطنية",
+      subtitle: "تأملات وخواطر",
+      description: "مجموعة من التأملات والخواطر الوطنية التي تعكس رؤية الكاتب لقضايا الوطن والهوية والمستقبل.",
+      cover: "/شجون وطنية نهائي.pdf",
+      link: "/book2",
+      featured: false,
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      title: "For the National Cause",
+      subtitle: "Essays & Reflections",
+      description: "A collection of articles published under pseudonyms between 2007-2008, expressing the struggle for national dignity and democratic participation.",
+      cover: "/cover.png",
+      link: "/book",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: "National Concerns",
+      subtitle: "Reflections & Thoughts",
+      description: "A collection of national reflections and thoughts that reflect the author's vision on issues of homeland, identity, and the future.",
+      cover: "/شجون وطنية نهائي.pdf",
+      link: "/book2",
+      featured: false,
+    },
+  ],
+};
+
 const content = {
   ar: {
     nav: {
@@ -18,6 +61,11 @@ const content = {
     hero: {
       name: "د. يونس عمر فنوش",
       subtitle: "كاتب ومفكر ليبي",
+    },
+    booksSection: {
+      title: "الكتب",
+      readBook: "اقرأ الكتاب",
+      viewAll: "جميع الكتب",
     },
     book: {
       title: "من أجل القضية الوطنية",
@@ -67,6 +115,8 @@ const content = {
       description: "للاستفسارات الإعلامية أو الأكاديمية أو الأسئلة العامة",
       contactBtn: "تواصل",
       mediaKit: "الملف الإعلامي",
+      email: "yfannush2@gmail.com",
+      phone: "+218 946173324",
     },
     footer: {
       copyright: "جميع الحقوق محفوظة",
@@ -83,6 +133,11 @@ const content = {
     hero: {
       name: "Dr. Yunis Omar Fanous",
       subtitle: "Libyan Writer & Intellectual",
+    },
+    booksSection: {
+      title: "Books",
+      readBook: "Read Book",
+      viewAll: "All Books",
     },
     book: {
       title: "For the National Cause",
@@ -132,6 +187,8 @@ const content = {
       description: "For media inquiries, academic references, or general questions",
       contactBtn: "Contact",
       mediaKit: "Media Kit",
+      email: "yfannush2@gmail.com",
+      phone: "+218 946173324",
     },
     footer: {
       copyright: "All Rights Reserved",
@@ -144,6 +201,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const t = content[lang];
+  const currentBooks = books[lang];
   const isRTL = lang === "ar";
 
   const scrollGallery = (direction: "left" | "right") => {
@@ -327,8 +385,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Book Section */}
+      {/* Books Gallery Section */}
       <section id="books" className="py-12 md:py-20 bg-[#EDE8DE]">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-12 text-center">
+            {t.booksSection.title}
+          </h2>
+
+          {/* Books Grid */}
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {currentBooks.map((book) => (
+              <Link
+                key={book.id}
+                href={book.link}
+                className="group bg-[#FDFCFA] rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Book Cover */}
+                  <div className="relative w-full md:w-48 aspect-[3/4] md:aspect-auto md:h-auto flex-shrink-0 bg-[#EDE8DE]">
+                    {book.cover.endsWith('.pdf') ? (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#2F4F3E] to-[#1E3328]">
+                        <div className="text-center p-4">
+                          <svg className="w-12 h-12 text-[#F6F2EA] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                          <p className="text-[#F6F2EA] font-bold text-lg">{book.title}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <Image
+                        src={book.cover}
+                        alt={book.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 200px"
+                      />
+                    )}
+                  </div>
+
+                  {/* Book Info */}
+                  <div className="flex-1 p-6 flex flex-col justify-center">
+                    <h3 className="text-xl md:text-2xl font-bold text-[#1E1E1E] mb-2 group-hover:text-[#2F4F3E] transition-colors">
+                      {book.title}
+                    </h3>
+                    <p className="text-[#8A6F3B] font-medium mb-3">{book.subtitle}</p>
+                    <p className="text-[#1E1E1E]/70 text-sm leading-relaxed mb-4">
+                      {book.description}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-[#2F4F3E] font-semibold text-sm">
+                      {t.booksSection.readBook}
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Book Section */}
+      <section className="py-12 md:py-20 bg-[#F6F2EA]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             {/* Book Cover Side */}
@@ -416,14 +535,14 @@ export default function Home() {
       </section>
 
       {/* Author Section with Photo */}
-      <section id="about" className="bg-[#F6F2EA] py-16 md:py-24">
+      <section id="about" className="bg-[#EDE8DE] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Photo */}
             <div className="relative">
               <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 overflow-hidden shadow-xl rounded">
                 <Image
-                  src="/unnamed.jpg"
+                  src="/dryunis.jpeg"
                   alt="د. يونس عمر فنوش - Dr. Yunis Omar Fanous"
                   fill
                   className="object-cover"
@@ -444,7 +563,7 @@ export default function Home() {
                 </p>
               ))}
               <Link 
-                href="#" 
+                href="/about" 
                 className="inline-block text-[#2F4F3E] font-semibold hover:underline underline-offset-4 mt-4"
               >
                 {t.about.learnMore} →
@@ -455,7 +574,7 @@ export default function Home() {
       </section>
 
       {/* Articles Section */}
-      <section id="articles" className="bg-[#EDE8DE] py-16 md:py-24">
+      <section id="articles" className="bg-[#F6F2EA] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E]">
@@ -534,7 +653,7 @@ export default function Home() {
       </section>
 
       {/* Media/YouTube Section */}
-      <section id="media" className="bg-[#F6F2EA] py-16 md:py-24">
+      <section id="media" className="bg-[#EDE8DE] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-2">
@@ -565,7 +684,7 @@ export default function Home() {
       <section className="bg-[#2F4F3E] py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <blockquote className="text-2xl md:text-3xl font-light text-[#F6F2EA] leading-relaxed italic mb-6">
-            "{t.quote.text}"
+            &ldquo;{t.quote.text}&rdquo;
           </blockquote>
           <p className="text-[#F6F2EA]/60 text-sm tracking-wide">
             {t.quote.source}
@@ -574,7 +693,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="bg-[#EDE8DE] py-16 md:py-24">
+      <section id="contact" className="bg-[#F6F2EA] py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-6">
             {t.contact.title}
@@ -582,9 +701,33 @@ export default function Home() {
           <p className="text-lg text-[#1E1E1E]/80 mb-8">
             {t.contact.description}
           </p>
+
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+            <a 
+              href={`mailto:${t.contact.email}`}
+              className="flex items-center gap-2 text-[#1E1E1E] hover:text-[#2F4F3E] transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span className="font-medium">{t.contact.email}</span>
+            </a>
+            <a 
+              href={`tel:${t.contact.phone.replace(/\s/g, '')}`}
+              className="flex items-center gap-2 text-[#1E1E1E] hover:text-[#2F4F3E] transition-colors"
+              dir="ltr"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <span className="font-medium">{t.contact.phone}</span>
+            </a>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="mailto:contact@yunisfanous.com" 
+              href={`mailto:${t.contact.email}`}
               className="px-8 py-4 bg-[#2F4F3E] text-[#F6F2EA] font-semibold rounded hover:bg-[#243D30] transition-colors"
             >
               {t.contact.contactBtn}
