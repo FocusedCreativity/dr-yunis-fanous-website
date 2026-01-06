@@ -131,7 +131,7 @@ export default function Book2Page() {
           <div className="h-6 w-px bg-[#F6F2EA]/20"></div>
           <div>
             <h1 className="text-[#F6F2EA] font-semibold text-sm sm:text-base">
-              شجون وطنية
+              شجون ليبية
             </h1>
             <p className="text-[#F6F2EA]/50 text-xs hidden sm:block">د. يونس عمر فنوش</p>
           </div>
@@ -170,7 +170,7 @@ export default function Book2Page() {
 
           <a
             href="/شجون وطنية نهائي.pdf"
-            download="شجون_وطنية.pdf"
+            download="شجون_ليبية.pdf"
             className="flex items-center gap-2 text-[#F6F2EA]/70 hover:text-[#F6F2EA] px-4 py-2 hover:bg-[#F6F2EA]/10 rounded transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

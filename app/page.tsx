@@ -6,45 +6,26 @@ import { useRef, useState } from "react";
 
 type Language = "ar" | "en";
 
-const books = {
+// Additional books for the gallery (not the featured book)
+const additionalBooks = {
   ar: [
     {
-      id: 1,
-      title: "من أجل القضية الوطنية",
-      subtitle: "مقالات ومقاربات",
-      description: "مجموعة مقالات نُشرت بأسماء مستعارة في الفترة من 2007م إلى 2008م، تُعبّر عن النضال من أجل الكرامة الوطنية والمشاركة الديمقراطية.",
-      cover: "/cover.png",
-      link: "/book",
-      featured: true,
-    },
-    {
       id: 2,
-      title: "شجون وطنية",
-      subtitle: "تأملات وخواطر",
+      title: "شجون ليبية",
+      subtitle: "الدكتور يونس فنوش",
       description: "مجموعة من التأملات والخواطر الوطنية التي تعكس رؤية الكاتب لقضايا الوطن والهوية والمستقبل.",
-      cover: "/شجون وطنية نهائي.pdf",
+      cover: "/shojoon-cover.png",
       link: "/book2",
-      featured: false,
     },
   ],
   en: [
     {
-      id: 1,
-      title: "For the National Cause",
-      subtitle: "Essays & Reflections",
-      description: "A collection of articles published under pseudonyms between 2007-2008, expressing the struggle for national dignity and democratic participation.",
-      cover: "/cover.png",
-      link: "/book",
-      featured: true,
-    },
-    {
       id: 2,
-      title: "National Concerns",
-      subtitle: "Reflections & Thoughts",
+      title: "Libyan Sorrows",
+      subtitle: "Dr. Yunis Fanous",
       description: "A collection of national reflections and thoughts that reflect the author's vision on issues of homeland, identity, and the future.",
-      cover: "/شجون وطنية نهائي.pdf",
+      cover: "/shojoon-cover.png",
       link: "/book2",
-      featured: false,
     },
   ],
 };
@@ -63,9 +44,8 @@ const content = {
       subtitle: "كاتب ومفكر ليبي",
     },
     booksSection: {
-      title: "الكتب",
+      title: "كتب أخرى",
       readBook: "اقرأ الكتاب",
-      viewAll: "جميع الكتب",
     },
     book: {
       title: "من أجل القضية الوطنية",
@@ -135,9 +115,8 @@ const content = {
       subtitle: "Libyan Writer & Intellectual",
     },
     booksSection: {
-      title: "Books",
+      title: "More Books",
       readBook: "Read Book",
-      viewAll: "All Books",
     },
     book: {
       title: "For the National Cause",
@@ -201,7 +180,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const t = content[lang];
-  const currentBooks = books[lang];
+  const books = additionalBooks[lang];
   const isRTL = lang === "ar";
 
   const scrollGallery = (direction: "left" | "right") => {
@@ -385,69 +364,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Books Gallery Section */}
+      {/* Featured Book Section (Main Hero Book) */}
       <section id="books" className="py-12 md:py-20 bg-[#EDE8DE]">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-12 text-center">
-            {t.booksSection.title}
-          </h2>
-
-          {/* Books Grid */}
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {currentBooks.map((book) => (
-              <Link
-                key={book.id}
-                href={book.link}
-                className="group bg-[#FDFCFA] rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex flex-col md:flex-row">
-                  {/* Book Cover */}
-                  <div className="relative w-full md:w-48 aspect-[3/4] md:aspect-auto md:h-auto flex-shrink-0 bg-[#EDE8DE]">
-                    {book.cover.endsWith('.pdf') ? (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#2F4F3E] to-[#1E3328]">
-                        <div className="text-center p-4">
-                          <svg className="w-12 h-12 text-[#F6F2EA] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                          </svg>
-                          <p className="text-[#F6F2EA] font-bold text-lg">{book.title}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <Image
-                        src={book.cover}
-                        alt={book.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, 200px"
-                      />
-                    )}
-                  </div>
-
-                  {/* Book Info */}
-                  <div className="flex-1 p-6 flex flex-col justify-center">
-                    <h3 className="text-xl md:text-2xl font-bold text-[#1E1E1E] mb-2 group-hover:text-[#2F4F3E] transition-colors">
-                      {book.title}
-                    </h3>
-                    <p className="text-[#8A6F3B] font-medium mb-3">{book.subtitle}</p>
-                    <p className="text-[#1E1E1E]/70 text-sm leading-relaxed mb-4">
-                      {book.description}
-                    </p>
-                    <span className="inline-flex items-center gap-2 text-[#2F4F3E] font-semibold text-sm">
-                      {t.booksSection.readBook}
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Book Section */}
-      <section className="py-12 md:py-20 bg-[#F6F2EA]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             {/* Book Cover Side */}
@@ -534,31 +452,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Author Section with Photo */}
+      {/* More Books Gallery Section */}
+      <section className="py-12 md:py-16 bg-[#F6F2EA]">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1E1E1E] mb-8">
+            {t.booksSection.title}
+          </h2>
+
+          {/* Books Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {books.map((book) => (
+              <Link
+                key={book.id}
+                href={book.link}
+                className="group bg-[#FDFCFA] rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                {/* Book Cover */}
+                <div className="relative aspect-[3/4] bg-[#EDE8DE]">
+                  <Image
+                    src={book.cover}
+                    alt={book.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 300px"
+                  />
+                </div>
+
+                {/* Book Info */}
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-[#1E1E1E] mb-1 group-hover:text-[#2F4F3E] transition-colors">
+                    {book.title}
+                  </h3>
+                  <p className="text-[#8A6F3B] text-sm font-medium mb-3">{book.subtitle}</p>
+                  <span className="inline-flex items-center gap-1 text-[#2F4F3E] font-medium text-sm">
+                    {t.booksSection.readBook}
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Author Section with Photo - Smaller Image */}
       <section id="about" className="bg-[#EDE8DE] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Photo */}
-            <div className="relative">
-              <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 overflow-hidden shadow-xl rounded">
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+            {/* Photo - Smaller */}
+            <div className="lg:col-span-2 relative">
+              <div className="relative aspect-square max-w-[280px] mx-auto lg:mx-0 overflow-hidden shadow-xl rounded-lg">
                 <Image
                   src="/dryunis.jpeg"
                   alt="د. يونس عمر فنوش - Dr. Yunis Omar Fanous"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="280px"
                   priority
                 />
               </div>
             </div>
 
             {/* Bio */}
-            <div className="space-y-6">
+            <div className="lg:col-span-3 space-y-5">
               <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-6">
                 {t.about.title}
               </h2>
               {t.about.bio.map((paragraph, index) => (
-                <p key={index} className="text-lg text-[#1E1E1E]/80 leading-relaxed">
+                <p key={index} className="text-base md:text-lg text-[#1E1E1E]/80 leading-relaxed">
                   {paragraph}
                 </p>
               ))}
