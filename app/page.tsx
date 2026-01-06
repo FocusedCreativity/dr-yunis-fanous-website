@@ -6,34 +6,58 @@ import { useRef, useState } from "react";
 
 type Language = "ar" | "en";
 
-// All books for the gallery
-const allBooks = {
+// Books for the gallery (excluding the featured hero book)
+const galleryBooks = {
   ar: [
-    {
-      id: 1,
-      title: "من أجل القضية الوطنية",
-      cover: "/cover.png",
-      link: "/book",
-    },
     {
       id: 2,
       title: "شجون ليبية",
       cover: "/shojoon-cover.png",
       link: "/book2",
     },
+    {
+      id: 3,
+      title: "الإبل في الشعر الشعبي",
+      cover: "/camel cover.jpeg",
+      link: "#",
+    },
+    {
+      id: 4,
+      title: "الهمالي شعيب العضيري",
+      cover: "/book 4.jpg",
+      link: "#",
+    },
+    {
+      id: 5,
+      title: "حالة إنسانية",
+      cover: "/book 3.jpeg",
+      link: "#",
+    },
   ],
   en: [
-    {
-      id: 1,
-      title: "For the National Cause",
-      cover: "/cover.png",
-      link: "/book",
-    },
     {
       id: 2,
       title: "Libyan Sorrows",
       cover: "/shojoon-cover.png",
       link: "/book2",
+    },
+    {
+      id: 3,
+      title: "Camels in Folk Poetry",
+      cover: "/camel cover.jpeg",
+      link: "#",
+    },
+    {
+      id: 4,
+      title: "Al-Himali Shuaib Al-Udhairi",
+      cover: "/book 4.jpg",
+      link: "#",
+    },
+    {
+      id: 5,
+      title: "A Human Condition",
+      cover: "/book 3.jpeg",
+      link: "#",
     },
   ],
 };
@@ -66,13 +90,17 @@ const content = {
       source: "— من مقدمة الكتاب",
     },
     about: {
-      title: "عن الكاتب",
-      bio: [
-        "الدكتور يونس عمر فنوش (1944 – ) هو أكاديمي وكاتب ومفكر ليبي، تمتد مسيرته عبر الدراسات الثقافية والتعليق السياسي والمشاركة المدنية. يُعرف بمساهماته العميقة في فهم المجتمع الليبي واللغة والنضال من أجل الكرامة الوطنية والمشاركة الديمقراطية.",
-        "شغل الدكتور فنوش منصب أستاذ في اللغة العربية وآدابها، ونُشر له على نطاق واسع في مواضيع تتعلق بالهوية الثقافية الليبية والخطاب العام والمصالحة الوطنية.",
-        "هو عضو مؤسس في التكتل المدني الديمقراطي في ليبيا، وكان صوتاً عاماً في قضايا السياسة الوطنية، داعياً للمشاركة الديمقراطية والوضوح الدستوري وسيادة المؤسسات الليبية.",
+      sectionLabel: "تعرّف على الكاتب",
+      title: "د. يونس عمر فنوش",
+      subtitle: "أكاديمي • كاتب • مفكر سياسي",
+      bio: "وُلد عام 1944، وقضى حياته مدافعاً عن الكرامة الوطنية والديمقراطية. أستاذ في اللغة العربية وآدابها، ومؤسس مشارك في التكتل المدني الديمقراطي. قلمه كان ولا يزال صوتاً للحقيقة في وجه الطغيان.",
+      highlights: [
+        "أستاذ جامعي في اللغة العربية وآدابها",
+        "مؤسس مشارك في التكتل المدني الديمقراطي",
+        "كاتب ومحلل سياسي",
+        "باحث في التراث الليبي والشعر الشعبي",
       ],
-      learnMore: "السيرة الكاملة",
+      learnMore: "اقرأ السيرة الكاملة",
     },
     articles: {
       title: "آخر مقالات الكاتب",
@@ -129,13 +157,17 @@ const content = {
       source: "— From the Book Preface",
     },
     about: {
-      title: "About the Author",
-      bio: [
-        "Dr. Yunis Omar Fanous (1944 – ) is a Libyan academic, writer, and public intellectual whose career bridges cultural scholarship, political commentary, and civic engagement.",
-        "Dr. Fanous served as a professor in Arabic language and literature and has been widely published on topics related to Libyan cultural identity and national reconciliation.",
-        "A founding member of the Civil Democratic Party in Libya, he has been a public voice on national policy issues, advocating for democratic participation and constitutional clarity.",
+      sectionLabel: "Meet the Author",
+      title: "Dr. Yunis Omar Fanous",
+      subtitle: "Academic • Writer • Political Thinker",
+      bio: "Born in 1944, he dedicated his life to defending national dignity and democracy. A professor of Arabic language and literature, and co-founder of the Civil Democratic Alliance. His pen has been and remains a voice of truth against tyranny.",
+      highlights: [
+        "University Professor of Arabic Language & Literature",
+        "Co-founder of the Civil Democratic Alliance",
+        "Writer & Political Analyst",
+        "Researcher in Libyan Heritage & Folk Poetry",
       ],
-      learnMore: "Full Biography",
+      learnMore: "Read Full Biography",
     },
     articles: {
       title: "Latest Articles",
@@ -172,7 +204,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const t = content[lang];
-  const books = allBooks[lang];
+  const books = galleryBooks[lang];
   const isRTL = lang === "ar";
 
   const scrollGallery = (direction: "left" | "right") => {
@@ -194,36 +226,14 @@ export default function Home() {
           {/* Mobile Header */}
           <div className="flex items-center justify-between md:hidden">
             <div className="flex items-center gap-1 bg-[#EDE8DE] rounded-full px-1">
-              <button
-                onClick={() => setLang("ar")}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  lang === "ar" ? "bg-[#2F4F3E] text-[#F6F2EA]" : "text-[#1E1E1E]/70"
-                }`}
-              >
-                عربي
-              </button>
-              <button
-                onClick={() => setLang("en")}
-                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  lang === "en" ? "bg-[#2F4F3E] text-[#F6F2EA]" : "text-[#1E1E1E]/70"
-                }`}
-              >
-                EN
-              </button>
+              <button onClick={() => setLang("ar")} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${lang === "ar" ? "bg-[#2F4F3E] text-[#F6F2EA]" : "text-[#1E1E1E]/70"}`}>عربي</button>
+              <button onClick={() => setLang("en")} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${lang === "en" ? "bg-[#2F4F3E] text-[#F6F2EA]" : "text-[#1E1E1E]/70"}`}>EN</button>
             </div>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#1E1E1E] hover:text-[#2F4F3E] transition-colors"
-              aria-label="Toggle menu"
-            >
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-[#1E1E1E] hover:text-[#2F4F3E] transition-colors" aria-label="Toggle menu">
               {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               )}
             </button>
           </div>
@@ -270,7 +280,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Books Section - Like Brené Brown */}
+      {/* Books Section */}
       <section id="books" className="py-16 md:py-24 bg-[#EDE8DE]">
         <div className="max-w-6xl mx-auto px-6">
           {/* Section Header */}
@@ -284,14 +294,7 @@ export default function Home() {
             <div className="flex justify-center">
               <Link href="/book" className="group relative">
                 <div className="relative w-[280px] md:w-[320px] aspect-[3/4] rounded shadow-2xl overflow-hidden group-hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:-translate-y-1">
-                  <Image
-                    src="/cover.png"
-                    alt="من أجل القضية الوطنية"
-                    fill
-                    className="object-cover"
-                    sizes="320px"
-                    priority
-                  />
+                  <Image src="/cover.png" alt="من أجل القضية الوطنية" fill className="object-cover" sizes="320px" priority />
                 </div>
               </Link>
             </div>
@@ -307,71 +310,84 @@ export default function Home() {
               <p className="text-base md:text-lg text-[#1E1E1E]/75 leading-relaxed">
                 {t.book.description}
               </p>
-              <Link
-                href="/book"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#1E1E1E] text-[#1E1E1E] font-medium rounded-full hover:bg-[#1E1E1E] hover:text-[#F6F2EA] transition-all duration-200"
-              >
+              <Link href="/book" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#1E1E1E] text-[#1E1E1E] font-medium rounded-full hover:bg-[#1E1E1E] hover:text-[#F6F2EA] transition-all duration-200">
                 {t.book.readBook}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
               </Link>
             </div>
           </div>
 
-          {/* Books Gallery - Floating Row */}
+          {/* Books Gallery - Floating Row (excludes hero book) */}
           <div className="flex justify-center gap-4 md:gap-6 overflow-x-auto pb-4 px-4 -mx-4">
             {books.map((book) => (
-              <Link
-                key={book.id}
-                href={book.link}
-                className="group flex-shrink-0"
-              >
-                <div className="relative w-[140px] md:w-[160px] aspect-[3/4] rounded shadow-lg overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                  <Image
-                    src={book.cover}
-                    alt={book.title}
-                    fill
-                    className="object-cover"
-                    sizes="160px"
-                  />
+              <Link key={book.id} href={book.link} className="group flex-shrink-0">
+                <div className="relative w-[120px] md:w-[140px] aspect-[3/4] rounded shadow-lg overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+                  <Image src={book.cover} alt={book.title} fill className="object-cover" sizes="140px" />
                 </div>
+                <p className="text-center text-xs mt-2 text-[#1E1E1E]/60 max-w-[120px] md:max-w-[140px] truncate">{book.title}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Author Section */}
-      <section id="about" className="bg-[#F6F2EA] py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-            {/* Photo */}
-            <div className="lg:col-span-2 relative">
-              <div className="relative aspect-square max-w-[280px] mx-auto lg:mx-0 overflow-hidden shadow-xl rounded-lg">
-                <Image
-                  src="/dryunis.jpeg"
-                  alt="د. يونس عمر فنوش"
-                  fill
-                  className="object-cover"
-                  sizes="280px"
-                  priority
-                />
+      {/* Modern Author Bio Section */}
+      <section id="about" className="bg-[#F6F2EA] py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Section Label */}
+          <p className="text-center text-[#8A6F3B] text-sm font-semibold uppercase tracking-[0.2em] mb-4">
+            {t.about.sectionLabel}
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Photo Side */}
+            <div className="relative flex justify-center lg:justify-start">
+              <div className="relative">
+                {/* Decorative background */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-[#2F4F3E]/10 to-transparent rounded-2xl -z-10"></div>
+                <div className="relative w-[300px] md:w-[340px] aspect-[4/5] overflow-hidden rounded-xl shadow-2xl">
+                  <Image src="/dryunis.jpeg" alt="د. يونس عمر فنوش" fill className="object-cover" sizes="340px" priority />
+                </div>
               </div>
             </div>
 
-            {/* Bio */}
-            <div className="lg:col-span-3 space-y-5">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E] mb-6">
-                {t.about.title}
-              </h2>
-              {t.about.bio.map((paragraph, index) => (
-                <p key={index} className="text-base md:text-lg text-[#1E1E1E]/80 leading-relaxed">
-                  {paragraph}
+            {/* Content Side */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E1E1E] mb-2">
+                  {t.about.title}
+                </h2>
+                <p className="text-lg text-[#2F4F3E] font-medium">
+                  {t.about.subtitle}
                 </p>
-              ))}
-              <Link href="/about" className="inline-block text-[#2F4F3E] font-semibold hover:underline underline-offset-4 mt-4">
-                {t.about.learnMore} →
+              </div>
+
+              <p className="text-lg text-[#1E1E1E]/80 leading-relaxed">
+                {t.about.bio}
+              </p>
+
+              {/* Highlights */}
+              <ul className="space-y-3">
+                {t.about.highlights.map((item, index) => (
+                  <li key={index} className="flex items-center gap-3 text-[#1E1E1E]/75">
+                    <span className="w-2 h-2 rounded-full bg-[#2F4F3E]"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Prominent CTA Button */}
+              <Link 
+                href="/about" 
+                className="inline-flex items-center gap-3 mt-4 px-8 py-4 bg-[#2F4F3E] text-[#F6F2EA] font-semibold rounded-lg hover:bg-[#243D30] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {t.about.learnMore}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
+                </svg>
               </Link>
             </div>
           </div>
@@ -382,19 +398,13 @@ export default function Home() {
       <section id="articles" className="bg-[#EDE8DE] py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E]">
-              {t.articles.title}
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E1E1E]">{t.articles.title}</h2>
             <div className="flex gap-2">
               <button onClick={() => scrollGallery("left")} className="w-12 h-12 rounded-full border-2 border-[#2F4F3E]/30 flex items-center justify-center text-[#2F4F3E] hover:bg-[#2F4F3E] hover:text-[#F6F2EA] transition-colors" aria-label="Scroll left">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M9 5l7 7-7 7" : "M15 19l-7-7 7-7"} />
-                </svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M9 5l7 7-7 7" : "M15 19l-7-7 7-7"} /></svg>
               </button>
               <button onClick={() => scrollGallery("right")} className="w-12 h-12 rounded-full border-2 border-[#2F4F3E]/30 flex items-center justify-center text-[#2F4F3E] hover:bg-[#2F4F3E] hover:text-[#F6F2EA] transition-colors" aria-label="Scroll right">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-                </svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} /></svg>
               </button>
             </div>
           </div>
@@ -404,18 +414,12 @@ export default function Home() {
               <a key={index} href={article.url} target="_blank" rel="noopener noreferrer" className="group flex-shrink-0 w-[280px] md:w-[320px] snap-start">
                 <div className="bg-[#FDFCFA] rounded-lg shadow-md p-6 h-full group-hover:shadow-xl transition-all group-hover:-translate-y-1">
                   <div className="w-10 h-10 rounded-full bg-[#2F4F3E]/10 flex items-center justify-center mb-4">
-                    <svg className="w-5 h-5 text-[#2F4F3E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    <svg className="w-5 h-5 text-[#2F4F3E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                   </div>
-                  <h3 className="text-lg font-bold text-[#1E1E1E] leading-snug mb-3 group-hover:text-[#2F4F3E] transition-colors">
-                    {article.title}
-                  </h3>
+                  <h3 className="text-lg font-bold text-[#1E1E1E] leading-snug mb-3 group-hover:text-[#2F4F3E] transition-colors">{article.title}</h3>
                   <span className="text-sm text-[#8A6F3B] font-medium flex items-center gap-1">
                     {isRTL ? "اقرأ المقال" : "Read Article"}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
-                    </svg>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} /></svg>
                   </span>
                 </div>
               </a>
@@ -423,9 +427,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <a href="https://www.eanlibya.com/author/younis-fanoush" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 border-2 border-[#2F4F3E] text-[#2F4F3E] font-semibold rounded hover:bg-[#2F4F3E] hover:text-[#F6F2EA] transition-colors">
-              {t.articles.viewAll}
-            </a>
+            <a href="https://www.eanlibya.com/author/younis-fanoush" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 border-2 border-[#2F4F3E] text-[#2F4F3E] font-semibold rounded hover:bg-[#2F4F3E] hover:text-[#F6F2EA] transition-colors">{t.articles.viewAll}</a>
           </div>
         </div>
       </section>
@@ -448,9 +450,7 @@ export default function Home() {
       {/* Quote */}
       <section className="bg-[#2F4F3E] py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <blockquote className="text-2xl md:text-3xl font-light text-[#F6F2EA] leading-relaxed italic mb-6">
-            &ldquo;{t.quote.text}&rdquo;
-          </blockquote>
+          <blockquote className="text-2xl md:text-3xl font-light text-[#F6F2EA] leading-relaxed italic mb-6">&ldquo;{t.quote.text}&rdquo;</blockquote>
           <p className="text-[#F6F2EA]/60 text-sm tracking-wide">{t.quote.source}</p>
         </div>
       </section>
@@ -481,15 +481,9 @@ export default function Home() {
       <footer className="bg-[#1E1E1E] py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-center gap-6 mb-8">
-            <a href="#" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="Facebook">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="Twitter">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/watch?v=ONPQ8PWGF1c" target="_blank" rel="noopener noreferrer" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="YouTube">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
+            <a href="#" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="Facebook"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="Twitter"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+            <a href="https://www.youtube.com/watch?v=ONPQ8PWGF1c" target="_blank" rel="noopener noreferrer" className="text-[#F6F2EA]/50 hover:text-[#F6F2EA] transition-colors" aria-label="YouTube"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
           </div>
           <div className="text-center space-y-2 text-sm text-[#F6F2EA]/50">
             <p>© {new Date().getFullYear()} {isRTL ? "د. يونس عمر فنوش" : "Dr. Yunis Omar Fanous"}</p>
@@ -498,9 +492,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <style jsx global>{`
-        .overflow-x-auto::-webkit-scrollbar { display: none; }
-      `}</style>
+      <style jsx global>{`.overflow-x-auto::-webkit-scrollbar { display: none; }`}</style>
     </div>
   );
 }
