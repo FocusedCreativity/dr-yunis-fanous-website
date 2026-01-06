@@ -346,7 +346,7 @@ export default function Home() {
                 {/* Decorative background */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-[#2F4F3E]/10 to-transparent rounded-2xl -z-10"></div>
                 <div className="relative w-[300px] md:w-[340px] aspect-[4/5] overflow-hidden rounded-xl shadow-2xl">
-                  <Image src="/dryunis.jpeg" alt="د. يونس عمر فنوش" fill className="object-cover" sizes="340px" priority />
+                  <Image src="/yunisprofile.jpg" alt="د. يونس عمر فنوش" fill className="object-cover" sizes="340px" priority />
                 </div>
               </div>
             </div>

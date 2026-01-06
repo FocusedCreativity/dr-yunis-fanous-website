@@ -336,23 +336,38 @@ export default function Book2Page() {
           transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
         
-        .stf__wrapper::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          width: 6px;
-          transform: translateX(-50%);
-          background: linear-gradient(to right, 
-            rgba(0,0,0,0.2), 
-            rgba(0,0,0,0.1) 20%, 
-            transparent 50%, 
-            rgba(0,0,0,0.1) 80%, 
-            rgba(0,0,0,0.2)
-          );
-          z-index: 100;
-          pointer-events: none;
+        /* Book spine effect - only on desktop (2-page view) */
+        @media (min-width: 768px) {
+          .stf__wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 6px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, 
+              rgba(0,0,0,0.2), 
+              rgba(0,0,0,0.1) 20%, 
+              transparent 50%, 
+              rgba(0,0,0,0.1) 80%, 
+              rgba(0,0,0,0.2)
+            );
+            z-index: 100;
+            pointer-events: none;
+          }
+        }
+        
+        /* Hide center shadow on mobile single-page view */
+        @media (max-width: 767px) {
+          .stf__wrapper::before {
+            display: none !important;
+          }
+          
+          /* Remove any center line effects on mobile */
+          .stf__block::after {
+            display: none !important;
+          }
         }
       `}</style>
     </div>
