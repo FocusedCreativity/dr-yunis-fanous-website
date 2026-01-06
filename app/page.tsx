@@ -318,15 +318,20 @@ export default function Home() {
           </div>
 
           {/* Books Gallery - Floating Row (excludes hero book) */}
-          <div className="flex justify-center gap-4 md:gap-6 overflow-x-auto pb-4 px-4 -mx-4">
-            {books.map((book) => (
-              <Link key={book.id} href={book.link} className="group flex-shrink-0">
-                <div className="relative w-[120px] md:w-[140px] aspect-[3/4] rounded shadow-lg overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                  <Image src={book.cover} alt={book.title} fill className="object-cover" sizes="140px" />
-                </div>
-                <p className="text-center text-xs mt-2 text-[#1E1E1E]/60 max-w-[120px] md:max-w-[140px] truncate">{book.title}</p>
-              </Link>
-            ))}
+          <div className="relative">
+            <div className="flex md:justify-center gap-4 md:gap-6 overflow-x-auto pb-4 px-6 -mx-6 md:mx-0 md:px-0 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+              {books.map((book) => (
+                <Link key={book.id} href={book.link} className="group flex-shrink-0 snap-start">
+                  <div className="relative w-[120px] md:w-[140px] aspect-[3/4] rounded shadow-lg overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+                    <Image src={book.cover} alt={book.title} fill className="object-cover" sizes="140px" />
+                  </div>
+                  <p className="text-center text-xs mt-2 text-[#1E1E1E]/60 max-w-[120px] md:max-w-[140px] truncate">{book.title}</p>
+                </Link>
+              ))}
+            </div>
+            {/* Scroll hint for mobile */}
+            <div className="md:hidden absolute left-0 top-0 bottom-4 w-6 bg-gradient-to-r from-[#EDE8DE] to-transparent pointer-events-none"></div>
+            <div className="md:hidden absolute right-0 top-0 bottom-4 w-6 bg-gradient-to-l from-[#EDE8DE] to-transparent pointer-events-none"></div>
           </div>
         </div>
       </section>
