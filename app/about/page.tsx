@@ -188,14 +188,14 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="flex flex-col items-center gap-4">
             <p className="text-sm text-[#8A6F3B] font-medium">{t.tribute.label}</p>
-            <div className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#8A6F3B]/30">
+            <div className="flex items-center gap-4">
+              <div className="relative w-16 h-16 rounded-md overflow-hidden border-2 border-[#8A6F3B]/30">
                 <Image
                   src="/briek.png"
                   alt="السفير إبريك عبد القادر السويّسي"
                   fill
                   className="object-cover"
-                  sizes="48px"
+                  sizes="64px"
                 />
               </div>
               <p className="text-[#5A5A5A]">{t.tribute.by}</p>
