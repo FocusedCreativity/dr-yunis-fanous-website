@@ -20,15 +20,15 @@ const content = {
       tagline: "أكاديمي، كاتب، ومفكر ليبي قضى عقوداً في الدفاع عن الكرامة الوطنية والديمقراطية والذاكرة الجماعية.",
     },
     bio: [
-      "في كل أمةٍ تمرّ بامتحانات المصير وتنهض من رماد القهر، يبرز رجال لا يطلبون تصفيقاً ولا يلهثون خلف الأضواء، بل يقفون بأقلامهم حرّاسًا للذاكرة، شهودًا للحق، وسفراءً لصوت الوطن حين يخفت. الدكتور يونس عمر فنوش هو أحد هؤلاء.",
-      "وُلد عام 1944، ولم يكن مجرّد شاهد على تحوّلات ليبيا بين الملكية والطغيان والثورة، بل كان من الذين وثّقوا بصدق، وقاوموا بصبر، ونصحوا بأمانة. باحث في اللغة العربية وأدبها، لكنه ما لبث أن تجاوز حدود الاختصاص الأكاديمي، ليصبح لسان الضمير الوطني، وحافظ الوجدان الليبي في أحلك اللحظات.",
+      "في كل أمة تمرّ بامتحانات المصير وتنهض من رماد القهر، يبرز رجال لا يطلبون تصفيقاً ولا يلهثون خلف الأضواء، بل يقفون بأقلامهم حرّاسًا للذاكرة، شهودًا للحق، وسفراءً لصوت الوطن حين يخفت. الدكتور يونس عمر فنوش هو أحد هؤلاء.",
+      "وُلد الدكتور يونس عام 1944، ولم يكن مجرّد شاهد على تحوّلات ليبيا بين الملكية والطغيان والثورة، بل كان من الذين وثّقوا بصدق، وقاوموا بصبر، ونصحوا بأمانة. باحث في اللغة العربية وأدبها، لكنه ما لبث أن تجاوز حدود الاختصاص الأكاديمي، ليصبح لسان الضمير الوطني، وحافظ الوجدان الليبي في أحلك اللحظات.",
       "كتب لا لينال إعجابًا، بل لينقذ فكرة، أو يعيد تشكيل سؤال: ما هي ليبيا؟ من نكون حين تتقطع أوصال الحكاية؟",
       "كان قلمه، داخل الوطن وتحت نير الاستبداد، يهمس بما يعجز الصراخ عن قوله، ويكتب بما لا تبلغه خطب المنابر.",
-      "أسّس مع رفاقٍ مخلصين التكتل المدني الديمقراطي، وظل ثابتًا على مبادئه: الشرعية الدستورية، وحدة الدولة، سيادة الشعب، واستقلال القرار الوطني. لم يُساوِم، ولم يهادن، بل آمن أن الإصلاح لا يُرجى من أنصاف الحلول ولا تُبنى الدولة على ركام العناوين المزيفة.",
+      "شارك في نشاط المعارضة الليبية في الخارج خلال الثمانينات والتسعينات، كما أسّس مع رفاقٍ مخلصين التكتل المدني الديمقراطي بعد سقوط نظام القذافي، وظل ثابتًا على مبادئه: الشرعية الدستورية، وحدة الدولة، سيادة الشعب، واستقلال القرار الوطني. لم يُساوِم، ولم يهادن، بل آمن أن الإصلاح لا يُرجى من أنصاف الحلول ولا تُبنى الدولة على ركام العناوين المزيفة.",
       "لم يتردّد في طرح الأسئلة الصعبة: هل يمكن للوطن أن يُبنى في ظلّ ذاكرة مقطوعة؟ أين موقع الشعر الشعبي، والتاريخ المحكي، والحكمة المتوارثة في مشروع الدولة؟ وما السبيل إلى دولة تعترف بتعدّدها دون أن تنهار تحت وطأته؟",
       "في مقالاته، وأبحاثه، ومداخلاته، يُعيد فنوش بناء المعنى عبر التراث الليبي الثقافي، من الشعر الشعبي إلى المرويات الشفوية، مؤكّدًا أن الهوية ركيزة السياسة، وأن الدولة بلا ذاكرة عمياء.",
-      "أن تقرأ لفنوش، هو أن تنهض من غفلة، أن تتأمّل، أن تتأدّب، أن تسمع النبض الخافت لليبيا الحقيقية، تلك التي لا تظهر في الشاشات، بل تسكن السطور، وتُروى بين السطور.",
-      "هذا الموقع لا يُكرّمه فقط، بل يفتح كتابه لمن أراد الفهم، والتأمّل، والعودة إلى الوطن كما يجب أن يكون.",
+      "أن تقرأ للدكتور فنوش، هو أن تنهض من غفلة، أن تتأمّل، أن تسمع النبض الخافت لليبيا الحقيقية، تلك التي لا تظهر في الشاشات، بل تسكن السطور، وتُروى بين السطور.",
+      "هذا الموقع لا يُكرّمه فقط، بل تفتح كتباته لمن أراد الفهم، والتأمّل، والعودة إلى الوطن كما يجب أن يكون.",
     ],
     closing: "فلعل كلماته تُضيء الطريق، حيث أطفأه الرصاص.",
     tribute: {
@@ -55,14 +55,14 @@ const content = {
     },
     bio: [
       "In every nation that endures the trials of destiny and rises from the ashes of oppression, there emerge men who seek no applause nor chase the spotlight, but stand with their pens as guardians of memory, witnesses to truth, and ambassadors for the homeland's voice when it fades. Dr. Yunis Omar Fanous is one of these men.",
-      "Born in 1944, he was not merely a witness to Libya's transformations between monarchy, tyranny, and revolution—he was among those who documented truthfully, resisted patiently, and counseled faithfully. A scholar of Arabic language and literature, he soon transcended the boundaries of academic specialization to become the voice of national conscience, the keeper of Libyan sentiment in its darkest moments.",
+      "Dr. Yunis was born in 1944, and was not merely a witness to Libya's transformations between monarchy, tyranny, and revolution—he was among those who documented truthfully, resisted patiently, and counseled faithfully. A scholar of Arabic language and literature, he soon transcended the boundaries of academic specialization to become the voice of national conscience, the keeper of Libyan sentiment in its darkest moments.",
       "He wrote not to earn admiration, but to save an idea, to reshape a question: What is Libya? Who are we when our story falls apart?",
       "His pen, within the homeland under the yoke of despotism, whispered what screams could not convey, wrote what pulpit sermons could not reach.",
-      "He founded, with loyal comrades, the Civil Democratic Alliance, and remained steadfast to his principles: constitutional legitimacy, state unity, popular sovereignty, and the independence of national decision-making. He did not compromise, did not appease, but believed that reform cannot be expected from half-measures, nor can a state be built on the rubble of false slogans.",
+      "He participated in Libyan opposition activities abroad during the 1980s and 1990s, and founded, with loyal comrades, the Civil Democratic Alliance after the fall of Gaddafi's regime. He remained steadfast to his principles: constitutional legitimacy, state unity, popular sovereignty, and the independence of national decision-making. He did not compromise, did not appease, but believed that reform cannot be expected from half-measures, nor can a state be built on the rubble of false slogans.",
       "He never hesitated to ask the difficult questions: Can a homeland be built upon a severed memory? Where is the place of folk poetry, oral history, and inherited wisdom in the project of statehood? And what is the path to a state that acknowledges its plurality without collapsing under its weight?",
       "In his articles, research, and interventions, Fanous rebuilds meaning through Libyan cultural heritage—from folk poetry to oral narratives—affirming that identity is the foundation of politics, and that a state without memory is blind.",
-      "To read Fanous is to awaken from slumber, to contemplate, to learn discipline, to hear the faint pulse of true Libya—the one that does not appear on screens, but dwells in lines, and is told between the lines.",
-      "This website does not merely honor him; it opens his book to those who seek understanding, reflection, and a return to the homeland as it should be.",
+      "To read Dr. Fanous is to awaken from slumber, to contemplate, to hear the faint pulse of true Libya—the one that does not appear on screens, but dwells in lines, and is told between the lines.",
+      "This website does not merely honor him; it opens his writings to those who seek understanding, reflection, and a return to the homeland as it should be.",
     ],
     closing: "May his words illuminate the path where bullets have extinguished the light.",
     tribute: {
@@ -174,21 +174,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Secondary Image */}
-      <section className="bg-[#EDE8DE] py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-lg shadow-xl">
-            <Image
-              src="/yuni2.jpg"
-              alt="د. يونس عمر فنوش"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 900px"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Closing Statement */}
       <section className="bg-[#2F4F3E] py-16 md:py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
@@ -200,9 +185,22 @@ export default function AboutPage() {
 
       {/* Tribute Credit */}
       <section className="bg-[#F6F2EA] py-10 border-b border-[#DDD8CE]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-sm text-[#8A6F3B] font-medium mb-1">{t.tribute.label}</p>
-          <p className="text-[#5A5A5A]">{t.tribute.by}</p>
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-sm text-[#8A6F3B] font-medium">{t.tribute.label}</p>
+            <div className="flex items-center gap-3">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#8A6F3B]/30">
+                <Image
+                  src="/briek.png"
+                  alt="السفير إبريك عبد القادر السويّسي"
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
+              </div>
+              <p className="text-[#5A5A5A]">{t.tribute.by}</p>
+            </div>
+          </div>
         </div>
       </section>
 
